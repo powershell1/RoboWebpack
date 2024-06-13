@@ -1,0 +1,15 @@
+{
+  "include": [
+    "decs.d.ts",
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "module": "ES2015",
+    "moduleResolution": "node",
+    "target": "ES2015",
+    "strict": true
+  }
+}
