@@ -10,9 +10,9 @@ import * as Blockly from 'blockly/core';
 // text to the output div on the sample app.
 // This is just an example and you should replace this with your
 // own custom blocks.
-const rotateMotor = {
-  type: 'rotate_motor',
-  message0: 'Rotate motor %1',
+const rotateServo = {
+  type: 'rotate_servo',
+  message0: 'Rotate servo %1',
   args0: [
     {
       type: 'input_value',
@@ -30,6 +30,6 @@ const rotateMotor = {
 // Create the block definitions for the JSON-only blocks.
 // This does not register their definitions with Blockly.
 // This file has no side effects!
-export const motorBlocks = Blockly.common.createBlockDefinitionsFromJsonArray([
-  rotateMotor,
+export const servoBlocks = Blockly.common.createBlockDefinitionsFromJsonArray([
+  rotateServo,
 ]);

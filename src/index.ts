@@ -6,7 +6,7 @@
 
 import * as Blockly from 'blockly';
 import {textBlocks} from './blocks/text';
-import {motorBlocks} from './blocks/motor';
+import {servoBlocks} from './blocks/servo';
 import {forBlock} from './generators/javascript';
 import {javascriptGenerator} from 'blockly/javascript';
 import {save, load, loadJSON} from './serialization';
@@ -23,11 +23,13 @@ import {FieldColourHsvSliders} from '@blockly/field-colour-hsv-sliders';
 // import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import './index.css';
 import { ultrasonicBlocks } from './blocks/ultrasonic';
+import { eventBlocks } from './blocks/event';
 
 // Register the blocks and generator with Blockly
 Blockly.common.defineBlocks(textBlocks);
-Blockly.common.defineBlocks(motorBlocks);
+Blockly.common.defineBlocks(servoBlocks);
 Blockly.common.defineBlocks(ultrasonicBlocks);
+Blockly.common.defineBlocks(eventBlocks);
 Object.assign(javascriptGenerator.forBlock, forBlock);
 
 const outputDiv = document.getElementById('output');
@@ -133,6 +135,20 @@ window.addEventListener('resize', ResizedWindow);
 // This function resets the code and output divs, shows the
 // generated code from the workspace, and evals the code.
 // In a real application, you probably shouldn't use `eval`.  
+
+const BlockChanged = {
+  postMessage: (uuid: string) => {
+    const data = Blockly.serialization.workspaces.save(ws!);
+    const json = JSON.stringify(data);
+    fetch('http://localhost:3000/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json,
+    });
+  }
+};
 
 if (ws) {
   // Load the initial state from storage and run the code.

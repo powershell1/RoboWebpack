@@ -17,6 +17,35 @@ export const toolbox = {
   contents: [
     {
       kind: 'category',
+      name: 'Events',
+      categorystyle: 'event_category',
+      contents: [
+        {
+          kind: 'block',
+          type: 'start_event',
+        },
+        {
+          kind: 'block',
+          type: 'loop_event',
+        },
+        {
+          kind: 'block',
+          type: 'wait_for',
+          inputs : {
+            SECONDS: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: 1,
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
+    {
+      kind: 'category',
       name: 'Logic',
       categorystyle: 'logic_category',
       contents: [
@@ -493,12 +522,12 @@ export const toolbox = {
     },
     {
       kind: 'category',
-      name: 'Motor',
-      categorystyle: 'motor_category',
+      name: 'Servo',
+      categorystyle: 'servo_category',
       contents: [
         {
           kind: 'block',
-          type: 'rotate_motor',
+          type: 'rotate_servo',
         },
       ],
     },

@@ -12,7 +12,7 @@ import * as Blockly from 'blockly/core';
 // own custom blocks.
 const ultrasonicGet = {
     type: 'ultrasonic_get',
-    message0: 'Ultrasonic receive distance in %1',
+    message0: 'Distance in %1',
     args0: [
         {
             type: 'field_dropdown',
