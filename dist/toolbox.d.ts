@@ -12,6 +12,29 @@ export declare const toolbox: {
         contents: ({
             kind: string;
             type: string;
+            inputs?: undefined;
+        } | {
+            kind: string;
+            type: string;
+            inputs: {
+                SECONDS: {
+                    shadow: {
+                        type: string;
+                        fields: {
+                            NUM: number;
+                        };
+                    };
+                };
+            };
+        })[];
+        custom?: undefined;
+    } | {
+        kind: string;
+        name: string;
+        categorystyle: string;
+        contents: ({
+            kind: string;
+            type: string;
             inputs: {
                 TIMES: {
                     shadow: {

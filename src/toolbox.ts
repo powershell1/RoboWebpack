@@ -522,20 +522,13 @@ export const toolbox = {
     },
     {
       kind: 'category',
-      name: 'Servo',
-      categorystyle: 'servo_category',
+      name: 'Sensor',
+      categorystyle: 'sensor_category',
       contents: [
         {
           kind: 'block',
           type: 'rotate_servo',
         },
-      ],
-    },
-    {
-      kind: 'category',
-      name: 'Ultrasonic',
-      categorystyle: 'ultrasonic_category',
-      contents: [
         {
           kind: 'block',
           type: 'ultrasonic_get',
