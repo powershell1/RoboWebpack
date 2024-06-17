@@ -3,7 +3,7 @@
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-export declare const motorBlocks: {
+export declare const servoBlocks: {
     [key: string]: any;
 };
-//# sourceMappingURL=motor.d.ts.map
+//# sourceMappingURL=servo.d.ts.map
