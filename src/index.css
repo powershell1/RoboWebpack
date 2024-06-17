@@ -55,6 +55,11 @@ code {
   font: 400 16px var(--font-family) !important;
 }
 
+.blocklyToolboxContents {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .blocklyToolboxDiv {
   background-color: #f9f9f9;
 }

@@ -5,13 +5,13 @@
  */
 
 import * as Blockly from 'blockly';
-import {textBlocks} from './blocks/text';
-import {servoBlocks} from './blocks/servo';
-import {forBlock} from './generators/javascript';
-import {javascriptGenerator} from 'blockly/javascript';
-import {save, load, loadJSON} from './serialization';
-import {toolbox} from './toolbox';
-import {v4, v5} from 'uuid';
+import { textBlocks } from './blocks/text';
+import { servoBlocks } from './blocks/servo';
+import { forBlock } from './generators/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
+import { save, load, loadJSON } from './serialization';
+import { toolbox } from './toolbox';
+import { v4, v5 } from 'uuid';
 /*
 import {
   ContinuousToolbox,
@@ -19,7 +19,7 @@ import {
   ContinuousMetrics,
 } from './molded_module/m2/index';
 */
-import {FieldColourHsvSliders} from '@blockly/field-colour-hsv-sliders';
+import { FieldColourHsvSliders } from '@blockly/field-colour-hsv-sliders';
 // import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import './index.css';
 import { ultrasonicBlocks } from './blocks/ultrasonic';
@@ -50,7 +50,7 @@ const ws = blocklyDiv && Blockly.inject(blocklyDiv, {
     flyoutsVerticalToolbox: ContinuousFlyout,
     metricsManager: ContinuousMetrics,
   },
-  */  
+  */
   plugins: {
   },
   toolboxPosition: "end",
@@ -136,17 +136,24 @@ window.addEventListener('resize', ResizedWindow);
 // generated code from the workspace, and evals the code.
 // In a real application, you probably shouldn't use `eval`.  
 
-const BlockChanged = {
+const HttpPosted = {
   postMessage: (uuid: string) => {
+    if (location.search != "?http_callback") return;
     const data = Blockly.serialization.workspaces.save(ws!);
     const json = JSON.stringify(data);
-    fetch('http://localhost:3000/post', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json,
-    });
+    eval(`
+      try {
+      fetch('http://localhost:3000/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json,
+      });
+    } catch (e) {
+      console.warn(e);
+    }
+      `);
   }
 };
 
@@ -163,6 +170,7 @@ if (ws) {
     save(ws);
     const uuid = v4();
     eval('try {BlockChanged.postMessage(uuid);} catch {}');
+    eval('try {HttpPosted.postMessage(uuid);} catch {}');
   });
 
   // Whenever the workspace changes meaningfully, run the code again.
