@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { inputs } from "blockly";
+
 /*
 This toolbox contains nearly every single built-in block that Blockly offers,
 in addition to the custom block 'add_text' this sample app adds.
@@ -531,7 +533,39 @@ export const toolbox = {
         },
         {
           kind: 'block',
+          type: 'motor_set',
+          inputs: {
+            SPEED : {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: 100,
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
           type: 'ultrasonic_get',
+        },
+        {
+          kind: 'block',
+          type: 'buzzer_set',
+          inputs: {
+            TONE : {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: 440,
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'led_set',
         },
       ],
     },
