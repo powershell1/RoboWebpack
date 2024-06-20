@@ -6,7 +6,6 @@
 
 import * as Blockly from 'blockly';
 import { textBlocks } from './blocks/text';
-import { servoBlocks } from './blocks/servo';
 import { forBlock } from './generators/javascript';
 import { javascriptGenerator } from 'blockly/javascript';
 import { save, load, loadJSON } from './serialization';
@@ -22,14 +21,13 @@ import {
 import { FieldColourHsvSliders } from '@blockly/field-colour-hsv-sliders';
 // import {ZoomToFitControl} from '@blockly/zoom-to-fit';
 import './index.css';
-import { ultrasonicBlocks } from './blocks/ultrasonic';
+import { sensorsBlocks } from './blocks/sensors';
 import { eventBlocks } from './blocks/event';
 
 // Register the blocks and generator with Blockly
 Blockly.common.defineBlocks(textBlocks);
-Blockly.common.defineBlocks(servoBlocks);
-Blockly.common.defineBlocks(ultrasonicBlocks);
 Blockly.common.defineBlocks(eventBlocks);
+Blockly.common.defineBlocks(sensorsBlocks);
 Object.assign(javascriptGenerator.forBlock, forBlock);
 
 const outputDiv = document.getElementById('output');
@@ -113,9 +111,11 @@ const ws = blocklyDiv && Blockly.inject(blocklyDiv, {
   }),
 });
 
+/*
 function ResizedWindow() {
   Blockly.svgResize(ws!);
 }
+  */
 
 /*
 (async () => {
@@ -124,13 +124,23 @@ function ResizedWindow() {
 })();
 */
 
+/*
+function openFullscreen(elem: HTMLElement) {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  }
+}
+
+openFullscreen(document.body);
+*/
+
 const savedLoad = loadJSON;
 eval(`window.loadJSON = (json) => {
   savedLoad(ws, json);
 };`);
 eval("window.blockJSON = '{}';");
-ResizedWindow();
-window.addEventListener('resize', ResizedWindow);
+// ResizedWindow();
+// window.addEventListener('resize', ResizedWindow);
 
 // This function resets the code and output divs, shows the
 // generated code from the workspace, and evals the code.

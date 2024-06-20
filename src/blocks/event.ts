@@ -36,7 +36,7 @@ const waitFor = {
     ],
     previousStatement: null,
     nextStatement: null,
-    colour: 150,
+    colour: 100,
     tooltip: '',
     helpUrl: '',
 };
