@@ -535,6 +535,44 @@ export declare const toolbox: {
         kind: string;
         name: string;
         categorystyle: string;
+        contents: ({
+            kind: string;
+            type: string;
+            inputs?: undefined;
+        } | {
+            kind: string;
+            type: string;
+            inputs: {
+                SPEED: {
+                    shadow: {
+                        type: string;
+                        fields: {
+                            NUM: number;
+                        };
+                    };
+                };
+                TONE?: undefined;
+            };
+        } | {
+            kind: string;
+            type: string;
+            inputs: {
+                TONE: {
+                    shadow: {
+                        type: string;
+                        fields: {
+                            NUM: number;
+                        };
+                    };
+                };
+                SPEED?: undefined;
+            };
+        })[];
+        custom?: undefined;
+    } | {
+        kind: string;
+        name: string;
+        categorystyle: string;
         custom: string;
         contents?: undefined;
     })[];
